@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adik - Жігіт және Қыздарға арналған киім дүкені</title>
+<!-- Google Fonts қосу -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  /* Жалпы стильдер */
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  /* Тақырып */
+  header {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #222;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-size: 36px;
+    color: #fff;
+    margin: 0;
+  }
+
+  nav a {
+    color: #fff;
+    font-weight: 600;
+    margin-left: 30px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #ff5722;
+  }
+
+  /* Басты бет */
+  #home {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+  }
+  #home h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  #home p {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  #home img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 30px;
+  }
+
+  /* Тауарлар бөлімі */
+  #products {
+    padding: 40px 20px;
+    background-color: #fff;
+  }
+  .categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  .categories button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    background-color: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .categories button:hover {
+    background-color: #ff5722;
+  }
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .product {
+    background-color: #fafafa;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 220px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  .product img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+  .product h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #222;
+  }
+  .product p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  .button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #222;
+    color: #fff;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  .button:hover {
+    background-color: #ff5722;
+  }
+
+  /* Себет және басқа бөлімдер */
+  #cart, #order, #about, #contact {
+    display: none;
+    padding: 40px 20px;
+  }
+.custom-button {
+  background-color: #111;
+  color: #fff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.custom-button:hover {
+  background-color: #e91e63; /* Қызғылт сәнді түс */
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+  #cart {
+    background-color: #fff;
+  }
+  #cart h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+  th {
+    background-color: #222;
+    color: #fff;
+  }
+  td button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  td button:hover {
+    background-color: #ff5722;
+  }
+  #total-price {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    text-align: right;
+  }
+  #order form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  #order input, #order textarea {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  #order button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #order button:hover {
+    background-color: #ff5722;
+  }
+
+  /* Компания және байланыс бөлімдері */
+  #about, #contact {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  #about h2, #contact h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  #about p, #contact p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  #about img {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 15px;
+  }
+
+  /* Жалпы стильдер */
+  footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  /* Адаптивтілік */
+  @media(max-width: 768px){
+    header {
+      flex-direction: column;
+      align-items: center;
+    }
+    nav {
+      margin-top: 15px;
+    }
+    .products {
+      justify-content: center;
+    }
+    .product {
+      width: 45%;
+    }
+  }
+  @media(max-width: 480px){
+    .product {
+      width: 100%;
+    }
+    #home h2 {
+      font-size: 28px;
+    }
+    #home p {
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Басқару бөлімдері -->
+<header>
+  <!-- Google Fonts қосуды <head> ішіне жазыңыз -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+<!-- Заманауи логотип -->
+<h1 class="logo">ADIK</h1>
+
+  <nav>
+    <a href="#home" onclick="showSection('home')">Басты бет</a>
+    <a href="#products" onclick="showSection('products')">Тауарлар</a>
+    <a href="#cart" onclick="showSection('cart')">Себет</a>
+    <a href="#about" onclick="showSection('about')">Біз туралы</a>
+    <a href="#contact" onclick="showSection('contact')">Байланыс</a>
+  </nav>
+</header>
+
+<!-- Басты бет -->
+<section id="home" style="padding: 60px 20px; background-color: #fefefe;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+    
+    <!-- Мәтіндік бөлік -->
+    <div style="flex: 1; min-width: 300px;">
+      <h2 style="font-size: 36px; color: #2c2c2c;">Қош келдіңіздер!</h2>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        <strong>Adik</strong> — 2022 жылы Қазақстанда құрылған, заманауи сәнге бағытталған онлайн киім дүкені.
+        Біз <strong>ерлерге, әйелдерге және балаларға</strong> арналған сәнді, сапалы киім түрлерін ұсынамыз.
+      </p>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        Бүгінде бізде:
+        <ul style="font-size: 18px; color: #444; margin-left: 20px; line-height: 1.6;">
+          <li>📦 1500+ тұрақты клиент</li>
+          <li>🏬 3 қалада шоурум және жеткізу нүктесі (Алматы, Астана, Шымкент)</li>
+          <li>🕒 24/7 онлайн тапсырыс қабылдау</li>
+          <li>🚀 2024 жылы — 200% өсу көрсеткіші</li>
+        </ul>
+      </p>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        Біз <em>қолжетімді бағада жоғары сапалы киімдер</em> ұсынамыз және әр сатып алушыға ерекше көңіл бөлеміз.
+        Adik — сіздің стильді серіктесіңіз!
+      </p>
+    </div>
+
+    <!-- Фото -->
+    <div style="flex: 1; min-width: 300px;">
+      <img src="main-banner.jpg" alt="Модалы киімдер" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Тауарлар бөлім -->
+<section id="products">
+  <div class="categories">
+    <button onclick="filterCategory('all')">Барлығы</button>
+    <button onclick="filterCategory('men')">Ерлер</button>
+    <button onclick="filterCategory('women')">Әйелдер</button>
+    <button onclick="filterCategory('kids')">Балалар</button>
+  </div>
+  <div class="products" id="product-list">
+    <!-- Тауарлар  -->
+    <!-- Ерлер -->
+    <div class="product" data-category="men">
+      <img src="hoodie.jpg" alt="Худи" />
+      <h3>Қысқы худи</h3>
+      <p>Бағасы: 15 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Қысқы худи', 15000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="men">
+      <img src="jeans.jpg" alt="Жейлі" />
+      <h3>Жейлі</h3>
+      <p>Бағасы: 12 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Жейлі', 12000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="men">
+      <img src="tshirt.jpg" alt="Футболка" />
+      <h3>Футболка</h3>
+      <p>Бағасы: 5 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Футболка', 5000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="men">
+      <img src="sweater.jpg" alt="Көйлек" />
+      <h3>Көйлек</h3>
+      <p>Бағасы: 10 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Көйлек', 10000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="men">
+      <img src="jacket.jpg" alt="Жақет" />
+      <h3>Жақет</h3>
+      <p>Бағасы: 20 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Жақет', 20000)">Тапсырыс беру</a>
+    </div>
+    <!-- Әйелдер -->
+    <div class="product" data-category="women">
+      <img src="dress.jpg" alt="Көйлек" />
+      <h3>Көйлек</h3>
+      <p>Бағасы: 18 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Көйлек', 18000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="women">
+      <img src="tshirt-women.jpg" alt="Әйелдер футболкасы" />
+      <h3>Футболка</h3>
+      <p>Бағасы: 6 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Әйелдер футболкасы', 6000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="women">
+      <img src="skirt.jpg" alt="Жейде" />
+      <h3>Жейде</h3>
+      <p>Бағасы: 9 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Жейде', 9000)">Тапсырыс беру</a>
+    </div>
+    <!-- Балалар -->
+    <div class="product" data-category="kids">
+      <img src="kids-shorts.jpg" alt="Балалар шорты" />
+      <h3>Балалар шорты</h3>
+      <p>Бағасы: 3 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Балалар шорты', 3000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="kids">
+      <img src="kids-tshirt.jpg" alt="Балалар футболкасы" />
+      <h3>Балалар футболкасы</h3>
+      <p>Бағасы: 2 500 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Балалар футболкасы', 2500)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="kids">
+      <img src="kids-jacket.jpg" alt="Балалар жакеті" />
+      <h3>Балалар жакеті</h3>
+      <p>Бағасы: 8 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Балалар жакеті', 8000)">Тапсырыс беру</a>
+    </div>
+    <!-- Қосымша -->
+    <div class="product" data-category="men">
+      <img src="cap.jpg" alt="Капка" />
+      <h3>Капка</h3>
+      <p>Бағасы: 2000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Капка', 2000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="women">
+      <img src="bag.jpg" alt="Сөмке" />
+      <h3>Сөмке</h3>
+      <p>Бағасы: 7 000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Сөмке', 7000)">Тапсырыс беру</a>
+    </div>
+    <div class="product" data-category="kids">
+      <img src="kids-shoes.jpg" alt="Балалар аяқ киім" />
+      <h3>Балалар аяқ киім</h3>
+      <p>Бағасы: 4000 тг</p>
+      <a href="#cart" class="button" onclick="addToCart('Балалар аяқ киім', 4000)">Тапсырыс беру</a>
+    </div>
+  </div>
+</section>
+
+<!-- Себет -->
+<section id="cart">
+  <h2>Сіздің себетіңіз</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Тауар</th>
+        <th>Саны</th>
+        <th>Бағасы</th>
+        <th>Жалпы</th>
+        <th>Өшіру</th>
+      </tr>
+    </thead>
+    <tbody id="cart-items"></tbody>
+  </table>
+  <div id="total-price">0 тг</div>
+  <button class="custom-button" onclick="showSection('order')">Тапсырыс беру</button>
+
+</section>
+
+<!-- Тапсырыс -->
+<section id="order">
+  <h2>Тапсырыс беру</h2>
+  <form onsubmit="submitOrder(event)">
+    <input type="text" placeholder="Толық аты" id="name" required />
+    <input type="tel" placeholder="Телефон нөмірі" id="phone" required />
+    <textarea placeholder="Мекенжай" id="address" rows="4" required></textarea>
+    <button type="submit">Қабылдау</button>
+  </form>
+</section>
+
+<!-- Біз туралы -->
+<section id="about" style="padding: 50px; background-color: #f9f9f9;">
+  <div style="max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+    
+    <!-- Мәтін -->
+    <div style="flex: 1; min-width: 300px;">
+      <h2 style="font-size: 32px; color: #333;">Біз туралы</h2>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        <strong>Adik</strong> – <em>Қазақстанда негізі қаланған</em> сәнді және заманауи киімдер дүкені.
+        Біз әйелдерге, ерлерге және балаларға арналған <strong>ыңғайлы әрі сапалы</strong> киім түрлерін ұсынамыз.
+      </p>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        Әр маусымда жаңа трендтерді ескеріп, сән үлгілерін <strong>жоғары сапалы материалдармен</strong> үйлестіріп ұсынамыз.
+      </p>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        Біздің мақсатымыз – клиенттерімізге <strong>ең үздік қызмет</strong> көрсету және <strong>жеке стильін табуға көмектесу</strong>.
+        Күнделікті киімдерден бастап, кешкі сән үлгілеріне дейін әр талғамға лайық.
+      </p>
+      <p style="font-size: 18px; line-height: 1.6; color: #555;">
+        <strong>Adik</strong> – жай ғана дүкен емес, бұл <em>стиль мен жайлылықтың үйлесімі</em>.
+      </p>
+    </div>
+
+    <!-- Фото -->
+    <div style="flex: 1; min-width: 300px;">
+      <img src="about-photo.jpg" alt="Компания туралы" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Байланыс -->
+<section id="contact" style="background-color: #ffffff; color: #000000; padding: 60px 20px;">
+  <div style="max-width: 1000px; margin: auto;">
+    <h2 style="font-size: 36px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">Байланыс</h2>
+    
+    <p style="font-size: 18px; margin-bottom: 10px;">
+      📍 <strong>Алматы:</strong> Тауарлар көшесі, 10 — сәннің жүрегі осында!
+    </p>
+    <p style="font-size: 18px; margin-bottom: 10px;">
+      📍 <strong>Астана:</strong> Абай көшесі, 10 — классика мен стильдің үйлесімі.
+    </p>
+    <p style="font-size: 18px; margin-bottom: 10px;">
+      📍 <strong>Шымкент:</strong> Нұрсұлтан Назарбаев көшесі, 10 — күнгейдегі сән орталығы.
+    </p>
+
+    <p style="font-size: 18px; margin-top: 30px;">
+      ☎️ <strong>Байланыс нөмірі:</strong> <a href="tel:+77777777" style="color: #ff0257; text-decoration: none;">+7 777 77 77</a>
+    </p>
+    <p style="font-size: 18px;">
+      📧 <strong>Email:</strong> <a href="mailto:info@adik.kz" style="color: #ff0055; text-decoration: none;">info@adik.kz</a>
+    </p>
+    
+    <p style="margin-top: 30px; font-size: 16px; color: #ff0000;">
+      Бізбен байланысыңыз — себебі сән үнемі байланыста болуды қажет етеді.
+    </p>
+  </div>
+</section>
+
+<!-- ЖӘНЕ JavaScript -->
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.style.display='none');
+    document.getElementById(id).style.display='block';
+  }
+
+  function filterCategory(cat) {
+    document.querySelectorAll('.product').forEach(p => {
+      p.style.display = (cat === 'all' || p.dataset.category === cat) ? 'block' : 'none';
+    });
+  }
+
+  let cart = [];
+
+  function addToCart(name, price) {
+    const index = cart.findIndex(item => item.name === name);
+    if (index >= 0) {
+      cart[index].quantity++;
+    } else {
+      cart.push({name, price, quantity:1});
+    }
+    updateCart();
+  }
+
+  function updateCart() {
+    const tbody = document.getElementById('cart-items');
+    tbody.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, i) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.quantity}</td>
+        <td>${item.price} тг</td>
+        <td>${item.price * item.quantity} тг</td>
+        <td><button onclick="removeFromCart(${i})">Өшіру</button></td>
+      `;
+      tbody.appendChild(row);
+      total += item.price * item.quantity;
+    });
+    document.getElementById('total-price').innerText = total + ' тг';
+  }
+
+  function removeFromCart(i) {
+    cart.splice(i,1);
+    updateCart();
+  }
+
+  function submitOrder(e) {
+    e.preventDefault();
+    alert('Тапсырысыңыз қабылданды!');
+    cart = [];
+    updateCart();
+    showSection('home');
+  }
+
+  // Инициализация
+  showSection('home');
+</script>
+
+</body>
+</html>
